@@ -6,7 +6,7 @@
 /*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/05/30 15:41:43 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:55:20 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -35,14 +35,17 @@ int size(t_stack *stack)
 int	isEmpty(t_stack *stack)
 {
 	if (stack->top_index == stack->size_max)
-		return (0);
+		return (1);
 	else
 		return (-1);
 }
 
 int isFull(t_stack *stack)
 {
-	return stack->top_index == 0;
+	if (stack->top_index == 0)
+		return (1);
+	else
+		return (-1);
 }
 
 void	push(t_stack *stack, int x)
@@ -69,57 +72,123 @@ int peek(t_stack *stack)
 void	ft_swap_a(t_stack *a)
 {
 	int	temp;
-	temp = a->tableau[a->top_index];
-	a->tableau[a->top_index] = a->tableau[a->top_index +1];
-	a->tableau[a->top_index +1] = temp;
-	//ft_printf("sa\n");
+
+	if (isEmpty(a) == -1)
+	{
+		temp = a->tableau[(a->size_max) - (a->top_index) -1];
+		a->tableau[(a->size_max) - (a->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -2];
+		a->tableau[(a->size_max)  - (a->top_index) -2] = temp;
+		//ft_printf("sa\n");
+	}
+	else
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	ft_swap_b(t_stack *b)
 {
 	int temp;
-	temp = b->tableau[b->top_index];
-	b->tableau[b->top_index] = b->tableau[b->top_index +1];
-	b->tableau[b->top_index +1] = temp;
-	//ft_printf("sb\n");
+
+	if (isEmpty(b) == -1)
+	{
+		temp = b->tableau[(b->size_max) - (b->top_index) -1];
+		b->tableau[(b->size_max) - (b->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -2];
+		b->tableau[(b->size_max) - (b->top_index) -2] = temp;
+		//ft_printf("sb\n");
+	}
+	else
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	ft_ss(t_stack *a, t_stack *b)
-{
-	ft_swap_a(a);
-	ft_swap_b(b);
-	//ft_printf("ss\n");
+{	
+	if ((isEmpty(a) == -1) && (isEmpty(b) == -1))
+	{
+		ft_swap_a(a);
+		ft_swap_b(b);
+		//ft_printf("ss\n");
+	}
+	else
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	ft_push_a(t_stack *a, t_stack *b)
 {
-	a->top_index--;
-	a->tableau[a->top_index] = b->tableau[b->top_index];
-	b->top_index++;
-	//ft_printf("pa\n");
+	if (isFull(a) == -1 && isEmpty(b) == -1)
+	{
+		a->top_index--;
+		a->tableau[(a->size_max) - (a->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -1];
+		b->top_index++;
+		//ft_printf("pa\n");//
+	}
+	else
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
-/*void	*ft_push_b(t_stack *a, t_stack *b)
+void	ft_push_b(t_stack *a, t_stack *b)
 {
-	b->top_index--;
-	b->tableau[b->top_index] = a->tableau[b->top_index];
-	a->top_index++;
-	//ft_printf("pb\n");
-}*/
+	if (isFull(b) == -1 && isEmpty(a) == -1)
+	{
+		b->top_index--;
+		b->tableau[(b->size_max) - (b->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -1];
+		a->top_index++;
+		//ft_printf("pa\n");//
+	}
+	else
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	ft_rotate_a(t_stack *a)
+{
+	int	temp;
+	int	v_haut;
+
+	v_haut = (a->size_max) - (a->top_index) -1;
+
+	if (isEmpty(a) == -1)
+	{	
+		while (v_haut != 0)  
+		{
+			temp = a->tableau[v_haut];
+			a->tableau[v_haut] = a->tableau[v_haut -1];
+			a->tableau[v_haut -1] = temp;
+			v_haut--;
+		}
+	}
+	else
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+}
 
 int	main(int argc, char **argv)
 {
-	int	v = 5;
-	int	a = 1;
 	int j;
-	int	i = 1;
-
+	int	i;
+	int	v;
+	int	w;
+	
+	i = 1;
 	ft_printf("-------------START--------------\n");
 
 	t_stack *pile_a = createStack(argc -1);
 	t_stack *pile_b = createStack(argc -1);
-
-	ft_printf("----------TOP_INDEX=%d----------\n", pile_a->top_index);	
+	
 	while (i < argc)
 	{
 		j = 0;
@@ -132,22 +201,48 @@ int	main(int argc, char **argv)
 			}
 			j++;
 		}
+		//ft_printf("index ->%d\n", pile_a->top_index);//
 		pile_a->top_index--;
 		pile_a->tableau[pile_a->top_index] = ft_atoi(argv[i]);
 		i++;
-	}
+	}	
 	ft_printf("----A----           ----B----\n");
-	while (v != -1)
+	v = 1;
+	while (v != pile_a->size_max +1)
 	{
-		ft_printf("---TOP_INDEX=%d---\n", pile_a->top_index);
-		ft_printf("%d\n", pile_a->tableau[v]);
-		v--;
-		a++;
+		ft_printf("%d\n", pile_a->tableau[pile_a->size_max - v]);
+		v++;
 	}
-	ft_printf("----------TEST----------\n");
+	ft_printf("\n");
+	ft_printf("SIZE MAX ->%d\n", pile_a->size_max);
+	ft_printf("TOP INDEX ->%d\n", pile_a->top_index);
+	ft_printf("VALEUR TOP INDEX ->%d\n", pile_a->tableau[pile_a->top_index]);
+
+
+	ft_printf("------------OPERATION------------\n");
+	
+	ft_rotate_a(pile_a);	
+	///ft_swap_a(pile_a);
+	///ft_push_b(pile_a, pile_b);
+	///ft_push_b(pile_a, pile_b);
+	///ft_swap_b(pile_b);
+	///ft_push_a(pile_a, pile_b);
+	///ft_push_a(pile_a, pile_b);
+	
+	ft_printf("---------------------------------\n");
 	ft_printf("----A----           ----B----\n");
-	/*ft_swap_a(pile_a);
-	ft_printf("%d\n", pile_a->tableau[pile_a->top_index]);*/
+	v = 1;
+	w = 1;
+	while (v != ((pile_a->size_max) +1) && w != ((pile_b->size_max) +1))
+	{
+		ft_printf("%d                  %d\n", pile_a->tableau[pile_a->size_max - v], pile_b->tableau[pile_b->size_max - w]);
+		v++;
+		w++;
+	}
+	ft_printf("\n");
+	ft_printf("SIZE MAX_A ->%d            SIZE MAX_B ->%d\n", pile_a->size_max, pile_b->size_max);
+	ft_printf("TOP INDEX_A ->%d           TOP_INDEX_B ->%d\n", pile_a->top_index, pile_b->top_index);
+	ft_printf("VALEUR TOP INDEX_A ->%d    VALEUR TOP INDEX_B ->%d\n", pile_a->tableau[pile_a->top_index], pile_b->tableau[pile_b->top_index]);
 }
 
 
