@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ope-part1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/06 18:44:38 by vpolojie          #+#    #+#             */
+/*   Updated: 2022/06/06 18:58:59 by vpolojie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_push_swap.h"
+#include "printf/ft_printf.h"
+#include "printf/libft/libft.h"
 
 void	ft_swap_a(t_stack *a)
 {
@@ -9,7 +22,7 @@ void	ft_swap_a(t_stack *a)
 		temp = a->tableau[(a->size_max) - (a->top_index) -1];
 		a->tableau[(a->size_max) - (a->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -2];
 		a->tableau[(a->size_max)  - (a->top_index) -2] = temp;
-		//ft_printf("sa\n");
+		ft_printf("sa\n");
 	}
 	else
 	{
@@ -27,7 +40,7 @@ void	ft_swap_b(t_stack *b)
 		temp = b->tableau[(b->size_max) - (b->top_index) -1];
 		b->tableau[(b->size_max) - (b->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -2];
 		b->tableau[(b->size_max) - (b->top_index) -2] = temp;
-		//ft_printf("sb\n");
+		ft_printf("sb\n");
 	}
 	else
 	{
@@ -42,7 +55,7 @@ void	ft_ss(t_stack *a, t_stack *b)
 	{
 		ft_swap_a(a);
 		ft_swap_b(b);
-		//ft_printf("ss\n");
+		ft_printf("ss\n");
 	}
 	else
 	{
@@ -58,7 +71,7 @@ void	ft_push_a(t_stack *a, t_stack *b)
 		a->top_index--;
 		a->tableau[(a->size_max) - (a->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -1];
 		b->top_index++;
-		//ft_printf("pa\n");//
+		ft_printf("pa\n");
 	}
 	else
 	{
@@ -74,7 +87,7 @@ void	ft_push_b(t_stack *a, t_stack *b)
 		b->top_index--;
 		b->tableau[(b->size_max) - (b->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -1];
 		a->top_index++;
-		//ft_printf("pa\n");//
+		ft_printf("pb\n");
 	}
 	else
 	{

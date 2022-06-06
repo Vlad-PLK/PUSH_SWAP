@@ -6,7 +6,7 @@
 /*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/06/01 11:55:20 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/06/06 19:23:28 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -95,5 +95,3 @@ int	main(int argc, char **argv)
 	ft_printf("TOP INDEX_A ->%d           TOP_INDEX_B ->%d\n", pile_a->top_index, pile_b->top_index);
 	ft_printf("VALEUR TOP INDEX_A ->%d    VALEUR TOP INDEX_B ->%d\n", pile_a->tableau[pile_a->top_index], pile_b->tableau[pile_b->top_index]);
 }
-
-
