@@ -64,10 +64,27 @@ void	ft_rotate_b(t_stack *b)
 
 void	ft_rr(t_stack *a, t_stack *b)
 {
+	int	temp1;
+	int temp2;
+	int	v_haut;
+	int	v_hautB;
+
+	v_haut = (a->size_max) - (a->top_index) -1;
+	v_hautB = ((b->size_max) - (b->top_index) -1);
+
 	if ((isEmpty(a) == -1 && isEmpty(b) == -1))
 	{
-		ft_rotate_a(a);
-		ft_rotate_b(b);
+		while (v_haut != 0 && v_hautB != 0)  
+		{
+			temp1 = a->tableau[v_haut];
+			a->tableau[v_haut] = a->tableau[v_haut -1];
+			a->tableau[v_haut -1] = temp1;
+			temp2 = b->tableau[v_hautB];
+			b->tableau[v_hautB] = b->tableau[v_hautB -1];
+			b->tableau[v_hautB -1] = temp2;
+			v_hautB--;
+			v_haut--;
+		}
 		ft_printf("rr\n");
 	}
 	else

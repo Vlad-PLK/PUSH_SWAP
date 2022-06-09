@@ -23,6 +23,7 @@ typedef struct s_stack
 	int	*tableau;
 }t_stack;
 
+t_stack *createStack(int size);
 int 	size(t_stack *stack);
 int		isEmpty(t_stack *stack);
 int 	isFull(t_stack *stack);
@@ -38,5 +39,7 @@ void	ft_rotate_b(t_stack *b);
 void	ft_rr(t_stack *a, t_stack *b);
 void	ft_reverse_rotate_a(t_stack *a);
 void	ft_reverse_rotate_b(t_stack *b);
+int 	two_spot(t_stack *stack);
+int		find_occur(t_stack *a);
 
 #endif

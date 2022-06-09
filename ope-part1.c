@@ -17,7 +17,7 @@ void	ft_swap_a(t_stack *a)
 {
 	int	temp;
 
-	if (isEmpty(a) == -1)
+	if (two_spot(a) == 1)
 	{
 		temp = a->tableau[(a->size_max) - (a->top_index) -1];
 		a->tableau[(a->size_max) - (a->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -2];
@@ -35,7 +35,7 @@ void	ft_swap_b(t_stack *b)
 {
 	int temp;
 
-	if (isEmpty(b) == -1)
+	if (two_spot(b) == 1)
 	{
 		temp = b->tableau[(b->size_max) - (b->top_index) -1];
 		b->tableau[(b->size_max) - (b->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -2];
@@ -51,10 +51,16 @@ void	ft_swap_b(t_stack *b)
 
 void	ft_ss(t_stack *a, t_stack *b)
 {	
-	if ((isEmpty(a) == -1) && (isEmpty(b) == -1))
+	int	temp1;
+	int	temp2;
+	if ((two_spot(a) == 1) && (two_spot(b) == 1))
 	{
-		ft_swap_a(a);
-		ft_swap_b(b);
+		temp1 = a->tableau[(a->size_max) - (a->top_index) -1];
+		a->tableau[(a->size_max) - (a->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -2];
+		a->tableau[(a->size_max)  - (a->top_index) -2] = temp1;
+		temp2 = b->tableau[(b->size_max) - (b->top_index) -1];
+		b->tableau[(b->size_max) - (b->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -2];
+		b->tableau[(b->size_max) - (b->top_index) -2] = temp2;
 		ft_printf("ss\n");
 	}
 	else

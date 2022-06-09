@@ -27,19 +27,33 @@ t_stack *createStack(int size)
 	return (stack);
 }
 
-int	main(int argc, char **argv)
+int	find_occur(t_stack *a)
 {
-	int j;
-	int	i;
-	int	v;
-	int	w;
-	
-	i = 1;
-	ft_printf("-------------START--------------\n");
+	int i;
+	int	j;
 
-	t_stack *pile_a = createStack(argc -1);
-	t_stack *pile_b = createStack(argc -1);
-	
+	i = 0;
+	while (i != a->size_max)
+	{
+		j = i +1;
+		while (j != a->size_max)
+		{
+			if (a->tableau[i] == a->tableau[j])
+				return (-1);
+			else
+				j++;
+		}
+		i++;
+	}
+}
+
+t_stack	*createStack_tab(t_stack *pile_a, int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	pile_a = createStack(argc -1);
 	while (i < argc)
 	{
 		j = 0;
@@ -52,12 +66,90 @@ int	main(int argc, char **argv)
 			}
 			j++;
 		}
-		//ft_printf("index ->%d\n", pile_a->top_index);//
 		pile_a->top_index--;
 		pile_a->tableau[pile_a->top_index] = ft_atoi(argv[i]);
 		i++;
-	}	
-	ft_printf("----A----           ----B----\n");
+	}
+	return (pile_a);
+}
+
+t_stack	*createStack_tab_split(t_stack *a, int argc, char **arg_list)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	a = createStack(argc);
+
+	while (i < argc)
+	{
+		j = 0;
+		while (arg_list[i][j] != '\0')
+		{
+			if (ft_isdigit(arg_list[i][j]) == 0)
+			{
+				ft_printf("Error");
+				exit(EXIT_FAILURE);
+			}
+			j++;
+		}
+		a->top_index--;
+		a->tableau[a->top_index] = ft_atoi(arg_list[i]);
+		i++;
+	}
+	return (a);
+}
+
+t_stack	*ft_split_arg(char *arg, t_stack *a, t_stack *b)
+{
+	char **arg_list;
+	int		i;
+	int		j;
+	int		argc;
+
+	argc = 0;
+	i = 0;
+	arg_list = ft_split(arg, 32);
+
+	while (arg_list[argc] != 0)
+		argc++;
+	a = createStack_tab(a, argc +1, arg_list);
+	return (a);
+}
+
+void	ft_push_swap(int argc, char **argv)
+{
+	t_stack *pile_a;
+	t_stack *pile_b;
+	int		i;
+	int		j;
+
+	i = 1;
+	if ((argc - 1) == 1)
+	{
+		pile_a = ft_split_arg(argv[1], pile_a, pile_b);
+		if (find_occur(pile_a) == -1)
+		{
+			ft_printf("Error\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		pile_a = createStack_tab(pile_a, argc, argv);
+		if (find_occur(pile_a) == -1)
+		{
+			ft_printf("Error\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	pile_b = createStack(pile_a->size_max);
+
+	ft_printf("------------------------------\n");
+	int v;
+	int w;
+
+	ft_printf("----A----\n");
 	v = 1;
 	while (v != pile_a->size_max +1)
 	{
@@ -69,29 +161,41 @@ int	main(int argc, char **argv)
 	ft_printf("TOP INDEX ->%d\n", pile_a->top_index);
 	ft_printf("VALEUR TOP INDEX ->%d\n", pile_a->tableau[pile_a->top_index]);
 
-
 	ft_printf("------------OPERATION------------\n");
 	
-	ft_rotate_a(pile_a);	
-	///ft_swap_a(pile_a);
-	///ft_push_b(pile_a, pile_b);
-	///ft_push_b(pile_a, pile_b);
-	///ft_swap_b(pile_b);
-	///ft_push_a(pile_a, pile_b);
-	///ft_push_a(pile_a, pile_b);
-	
-	ft_printf("---------------------------------\n");
-	ft_printf("----A----           ----B----\n");
+	//ft_swap_a(pile_a);
+	//ft_push_b(pile_a, pile_b);
+	//ft_push_b(pile_a, pile_b);
+	//ft_rr(pile_a, pile_b);
+	//ft_push_b(pile_a, pile_b);
+	//ft_swap_a(pile_a);
+	//ft_push_a(pile_a, pile_b);
+	//ft_push_a(pile_a, pile_b);
+	//ft_push_a(pile_a, pile_b);
+	ft_printf("----------------------------------\n");
+
+	ft_printf("----A----\n");
 	v = 1;
-	w = 1;
-	while (v != ((pile_a->size_max) +1) && w != ((pile_b->size_max) +1))
+	while (v != pile_a->size_max +1)
 	{
-		ft_printf("%d                  %d\n", pile_a->tableau[pile_a->size_max - v], pile_b->tableau[pile_b->size_max - w]);
+		ft_printf("%d\n", pile_a->tableau[pile_a->size_max - v]);
 		v++;
-		w++;
 	}
 	ft_printf("\n");
-	ft_printf("SIZE MAX_A ->%d            SIZE MAX_B ->%d\n", pile_a->size_max, pile_b->size_max);
-	ft_printf("TOP INDEX_A ->%d           TOP_INDEX_B ->%d\n", pile_a->top_index, pile_b->top_index);
-	ft_printf("VALEUR TOP INDEX_A ->%d    VALEUR TOP INDEX_B ->%d\n", pile_a->tableau[pile_a->top_index], pile_b->tableau[pile_b->top_index]);
+	ft_printf("%d\n", pile_b->tableau[3]);
+	ft_printf("%d\n", pile_b->tableau[2]);
+	ft_printf("%d\n", pile_b->tableau[1]);
+	ft_printf("%d\n", pile_b->tableau[0]);
+	ft_printf("\n");
+	ft_printf("SIZE MAX ->%d\n", pile_a->size_max);
+	ft_printf("TOP INDEX ->%d\n", pile_a->top_index);
+	ft_printf("VALEUR TOP INDEX ->%d\n", pile_a->tableau[pile_a->top_index]);
+}
+
+int	main(int argc, char **argv)
+{
+	char **strs;
+
+	ft_printf("-------------START--------------\n");
+	ft_push_swap(argc, argv);
 }
