@@ -6,7 +6,7 @@
 /*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:02:39 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/06/01 11:15:36 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:06:12 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	ft_reverse_rotate_a(t_stack *a);
 void	ft_reverse_rotate_b(t_stack *b);
 int 	two_spot(t_stack *stack);
 int		find_occur(t_stack *a);
+int		ft_max_int(t_stack *pile_a);
 
 #endif

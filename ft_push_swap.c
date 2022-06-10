@@ -6,7 +6,7 @@
 /*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/06/06 19:23:28 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:07:36 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -45,6 +45,29 @@ int	find_occur(t_stack *a)
 		}
 		i++;
 	}
+	return (0);
+}
+
+int	ft_check_ascending(t_stack *pile_a)
+{
+	int i;
+	int	j;
+
+	i = 0;
+	while (i != (pile_a->size_max - pile_a->top_index -1))
+	{
+		j = i +1;
+		while (j != (pile_a->size_max - pile_a->top_index -1))
+		{
+			if (pile_a->tableau[i] < pile_a->tableau[j])
+				return (-1);
+			else
+				j++;
+		}
+		i++;
+	}
+	return (0);
+
 }
 
 t_stack	*createStack_tab(t_stack *pile_a, int argc, char **argv)
@@ -113,8 +136,27 @@ t_stack	*ft_split_arg(char *arg, t_stack *a, t_stack *b)
 
 	while (arg_list[argc] != 0)
 		argc++;
-	a = createStack_tab(a, argc +1, arg_list);
+	a = createStack_tab_split(a, argc, arg_list);
 	return (a);
+}
+
+void	ft_display_tab(t_stack *pile)
+{
+	int v;
+
+	v = 1;
+
+	ft_printf("----PILE----\n");
+	while (v != pile->size_max +1)
+	{
+		ft_printf("%d\n", pile->tableau[pile->size_max - v]);
+		v++;
+	}
+	ft_printf("\n");
+
+	ft_printf("SIZE MAX ->%d\n", pile->size_max);
+	ft_printf("TOP INDEX ->%d\n", pile->top_index);
+	ft_printf("VALEUR TOP INDEX ->%d\n", pile->tableau[pile->top_index]);
 }
 
 void	ft_push_swap(int argc, char **argv)
@@ -143,26 +185,21 @@ void	ft_push_swap(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 	}
+	if (ft_check_ascending(pile_a) == 0)
+		ft_printf("SORTED CORRECTLY\n");
+	else
+	{
+		///if (pile_a->size_max == 3)
+		///	ft_sort_three(pile_a);
+		ft_printf("NOT SORTED\n");
+	}
+	ft_printf("%d\n", ft_max_int(pile_a));
 	pile_b = createStack(pile_a->size_max);
 
-	ft_printf("------------------------------\n");
-	int v;
-	int w;
-
-	ft_printf("----A----\n");
-	v = 1;
-	while (v != pile_a->size_max +1)
-	{
-		ft_printf("%d\n", pile_a->tableau[pile_a->size_max - v]);
-		v++;
-	}
-	ft_printf("\n");
-	ft_printf("SIZE MAX ->%d\n", pile_a->size_max);
-	ft_printf("TOP INDEX ->%d\n", pile_a->top_index);
-	ft_printf("VALEUR TOP INDEX ->%d\n", pile_a->tableau[pile_a->top_index]);
-
-	ft_printf("------------OPERATION------------\n");
+	///ft_printf("------------------------------\n");
+	///ft_display_tab(pile_a);
 	
+	//ft_printf("------------OPERATION------------\n");
 	//ft_swap_a(pile_a);
 	//ft_push_b(pile_a, pile_b);
 	//ft_push_b(pile_a, pile_b);
@@ -172,24 +209,11 @@ void	ft_push_swap(int argc, char **argv)
 	//ft_push_a(pile_a, pile_b);
 	//ft_push_a(pile_a, pile_b);
 	//ft_push_a(pile_a, pile_b);
-	ft_printf("----------------------------------\n");
+	//ft_printf("----------------------------------\n");
 
-	ft_printf("----A----\n");
-	v = 1;
-	while (v != pile_a->size_max +1)
-	{
-		ft_printf("%d\n", pile_a->tableau[pile_a->size_max - v]);
-		v++;
-	}
-	ft_printf("\n");
-	ft_printf("%d\n", pile_b->tableau[3]);
-	ft_printf("%d\n", pile_b->tableau[2]);
-	ft_printf("%d\n", pile_b->tableau[1]);
-	ft_printf("%d\n", pile_b->tableau[0]);
-	ft_printf("\n");
-	ft_printf("SIZE MAX ->%d\n", pile_a->size_max);
-	ft_printf("TOP INDEX ->%d\n", pile_a->top_index);
-	ft_printf("VALEUR TOP INDEX ->%d\n", pile_a->tableau[pile_a->top_index]);
+	//ft_display_tab(pile_a);
+	//ft_display_tab(pile_b);
+	//ft_printf("\n");
 }
 
 int	main(int argc, char **argv)
