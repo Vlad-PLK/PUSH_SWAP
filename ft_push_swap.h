@@ -42,5 +42,9 @@ void	ft_reverse_rotate_b(t_stack *b);
 int 	two_spot(t_stack *stack);
 int		find_occur(t_stack *a);
 int		ft_max_int(t_stack *pile_a);
+t_stack	*ft_sort_three(t_stack *pile_a);
+t_stack *ft_sort_five(t_stack *pile_a, t_stack *pile_b);
+int	ft_check_ascending(t_stack *pile_a);
+int	ft_min_int(t_stack *pile_a);
 
 #endif

@@ -54,10 +54,10 @@ int	ft_check_ascending(t_stack *pile_a)
 	int	j;
 
 	i = 0;
-	while (i != (pile_a->size_max - pile_a->top_index -1))
+	while (i != (pile_a->size_max) - pile_a->top_index)
 	{
 		j = i +1;
-		while (j != (pile_a->size_max - pile_a->top_index -1))
+		while (j != (pile_a->size_max) - pile_a->top_index)
 		{
 			if (pile_a->tableau[i] < pile_a->tableau[j])
 				return (-1);
@@ -68,6 +68,25 @@ int	ft_check_ascending(t_stack *pile_a)
 	}
 	return (0);
 
+}
+
+void	ft_checkErrors(t_stack *pile_a)
+{
+	int	i;
+
+	i = 0;
+	while (i != pile_a->size_max -1)
+	{
+		if (pile_a->tableau[i] == 2147483647 || pile_a->tableau[i] == -2147483646 
+		|| find_occur(pile_a) == -1)
+		{
+			ft_printf("Error\n");
+			exit(EXIT_FAILURE);
+		}
+		else
+			i++;
+	}
+	return ;
 }
 
 t_stack	*createStack_tab(t_stack *pile_a, int argc, char **argv)
@@ -164,56 +183,29 @@ void	ft_push_swap(int argc, char **argv)
 	t_stack *pile_a;
 	t_stack *pile_b;
 	int		i;
-	int		j;
 
 	i = 1;
+	if (argc == 1)
+		return ;
 	if ((argc - 1) == 1)
-	{
 		pile_a = ft_split_arg(argv[1], pile_a, pile_b);
-		if (find_occur(pile_a) == -1)
-		{
-			ft_printf("Error\n");
-			exit(EXIT_FAILURE);
-		}
-	}
 	else
-	{
 		pile_a = createStack_tab(pile_a, argc, argv);
-		if (find_occur(pile_a) == -1)
-		{
-			ft_printf("Error\n");
-			exit(EXIT_FAILURE);
-		}
-	}
+	ft_checkErrors(pile_a);
+	pile_b = createStack(pile_a->size_max);
 	if (ft_check_ascending(pile_a) == 0)
 		ft_printf("SORTED CORRECTLY\n");
 	else
-	{
-		///if (pile_a->size_max == 3)
-		///	ft_sort_three(pile_a);
-		ft_printf("NOT SORTED\n");
-	}
-	ft_printf("%d\n", ft_max_int(pile_a));
-	pile_b = createStack(pile_a->size_max);
+		if (pile_a->size_max == 3)
+			ft_sort_three(pile_a);
+		if (pile_a->size_max == 5)
+			ft_sort_five(pile_a, pile_b);
+		if (pile_a->size_max > 5)
+			///ft_sort_big(pile_a, pile_b);
 
-	///ft_printf("------------------------------\n");
-	///ft_display_tab(pile_a);
-	
-	//ft_printf("------------OPERATION------------\n");
-	//ft_swap_a(pile_a);
-	//ft_push_b(pile_a, pile_b);
-	//ft_push_b(pile_a, pile_b);
-	//ft_rr(pile_a, pile_b);
-	//ft_push_b(pile_a, pile_b);
-	//ft_swap_a(pile_a);
-	//ft_push_a(pile_a, pile_b);
-	//ft_push_a(pile_a, pile_b);
-	//ft_push_a(pile_a, pile_b);
-	//ft_printf("----------------------------------\n");
-
-	//ft_display_tab(pile_a);
+	ft_printf("------------------------------\n");
+	ft_display_tab(pile_a);
 	//ft_display_tab(pile_b);
-	//ft_printf("\n");
 }
 
 int	main(int argc, char **argv)
