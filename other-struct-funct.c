@@ -13,11 +13,6 @@
 #include "printf/libft/libft.h"
 #include "ft_push_swap.h"
 
-int size(t_stack *stack)
-{
-	return (stack->size_max - stack->top_index);
-}
-
 int	isEmpty(t_stack *stack)
 {
 	if (stack->top_index == stack->size_max)
@@ -42,48 +37,71 @@ int isFull(t_stack *stack)
 		return (-1);
 }
 
-int peek(t_stack *stack)
+int	ft_min_int(t_stack *pile_a)
 {
-	if (!isEmpty(stack))
+	int	i;
+	int index;
+	int	min;
+
+	i = 0;
+	index = 0;
+	min = pile_a->tableau[0];
+
+	while (i != ((pile_a->size_max) - (pile_a->top_index)))
 	{
-		return (stack->tableau[stack->top_index]);
+		if (pile_a->tableau[i] < min)
+		{
+			min = pile_a->tableau[i];
+			i++;
+		}
+		else
+			i++;
 	}
-	else
-		exit(EXIT_FAILURE);
+	while (pile_a->tableau[index] != min)
+		index++;
+	return (index);
 }
 
-void	ft_rrr(t_stack *a, t_stack *b)
+int	**ft_split_tab(t_stack *pile_a)
 {
-	int	temp1;
-	int v_haut;
-	int v_bas;
-	int	temp2;
-	int v_haut2;
-	int	v_bas2;
+	int	n;
+	int	*tab;
+	int	i;
+	int	**chunks;
+	int	j;
+	int k;
 
-	v_haut2 = ((b->size_max) - (b->top_index) -1);
-	v_bas = 0;
-	v_bas2 = 0;
-	v_haut = ((a->size_max) - (a->top_index) -1);
-
-	if(isEmpty(a) == -1 && isEmpty(b) == -1)
-	{	
-		while (v_bas != v_haut && v_bas2 != v_haut2)
-		{
-			temp1 = a->tableau[v_bas];
-			a->tableau[v_bas] = a->tableau[v_bas +1];
-			a->tableau[v_bas +1] = temp1;
-			temp2 = b->tableau[v_bas2];
-			b->tableau[v_bas2] = b->tableau[v_bas2 +1];
-			b->tableau[v_bas2 +1] = temp2;
-			v_bas++;
-			v_bas2++;
-		}
-		ft_printf("rrr\n");
-	}
-	else
+	tab = ft_sort_int_tab(pile_a);
+	n = 5;
+	i = 0;
+	k = 0;
+	chunks = (int **)malloc(sizeof(int *) * n);
+	while (i != n)
 	{
-		ft_printf("Error\n");
-		exit(EXIT_FAILURE);
+		j = 0;
+		chunks[i] = (int *)malloc(sizeof(int) * (pile_a->size_max /n));
+		while (j != (pile_a->size_max /n))
+		{
+			chunks[i][j] = tab[k];
+			j++;
+			k++;
+		}
+		i++;
 	}
+	return (chunks);
+}
+
+int	ft_mediane(t_stack *pile_a)
+{
+	int	*tab;
+	int	med;
+	int	n;
+
+	n = pile_a->size_max;
+	tab = ft_sort_int_tab(pile_a);
+	if ((n / 2) == 0)
+		med = ((tab[(n /2) -1] + tab[((n /2) +1) -1]) /2);
+	else
+		med = tab[((n +1) /2) -1];
+	return (med);
 }

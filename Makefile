@@ -1,6 +1,6 @@
 PRINTF = printf/
 
-SRCS = ft_push_swap.c
+SRCS = push_swap.c ft_sort_funct.c ope-part1.c ope-part2.c other-struct-funct.c other-struct-funct2.c
 
 OBJS	= ${SRCS:.c=.o}
 

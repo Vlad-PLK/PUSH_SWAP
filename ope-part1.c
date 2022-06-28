@@ -53,6 +53,7 @@ void	ft_ss(t_stack *a, t_stack *b)
 {	
 	int	temp1;
 	int	temp2;
+	
 	if ((two_spot(a) == 1) && (two_spot(b) == 1))
 	{
 		temp1 = a->tableau[(a->size_max) - (a->top_index) -1];

@@ -16,104 +16,217 @@
 #include "printf/ft_printf.h"
 #include "printf/libft/libft.h"
 
-int	ft_max_int(t_stack *pile_a)
+int	*ft_sort_int_tab2(t_stack *pile_a, int i, int j, int temp, int *tab)
 {
-	int	i;
-	int	max;
-
-	i = 0;
-	max = pile_a->tableau[0];
-
-	while (i != ((pile_a->size_max) - (pile_a->top_index)))
+	while (i < pile_a->size_max)
 	{
-		if (pile_a->tableau[i] > max)
+		j = i + 1;
+		while (j < pile_a->size_max)
 		{
-			max = pile_a->tableau[i];
-			i++;
+			if (tab[i] > tab[j])
+			{
+				temp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = temp;
+			}
+			j++;
 		}
-		else
-			i++;
+		i++;
 	}
-	return (max);
+	return (tab);
 }
 
-int	ft_min_int(t_stack *pile_a)
+int	*ft_sort_int_tab(t_stack *pile_a)
 {
-	int	i;
-	int index;
-	int	min;
+	int		i;
+	int		j;
+	int		temp;
+	int		*tab;
 
+	tab = (int *)malloc(sizeof(int) * pile_a->size_max);
 	i = 0;
-	index = 0;
-	min = pile_a->tableau[0];
-
-	while (i != ((pile_a->size_max) - (pile_a->top_index)))
+	while (i < pile_a->size_max)
 	{
-		if (pile_a->tableau[i] < min)
-		{
-			min = pile_a->tableau[i];
-			i++;
-		}
-		else
-			i++;
+		tab[i] = pile_a->tableau[i];
+		i++;
 	}
-	while (pile_a->tableau[index] != min)
-		index++;
-	return (index);
-}
-
-t_stack	*ft_sort_three(t_stack *pile_a)
-{
-	int	max;
-
-	max = ft_max_int(pile_a);
-	if (pile_a->tableau[2] == max)
-	{
-		ft_rotate_a(pile_a);
-		if (ft_check_ascending(pile_a) == -1)
-		{
-			ft_swap_a(pile_a);
-		}
-	}
-	else if (pile_a->tableau[1] == max)
-	{
-		ft_reverse_rotate_a(pile_a);
-		if (ft_check_ascending(pile_a) == -1)
-		{
-			ft_swap_a(pile_a);
-		}
-	}
-	else
-		ft_swap_a(pile_a);
+	i = 0;
+	tab = ft_sort_int_tab2(pile_a, i, j, temp, tab);
+	return (tab);
 }
 
 t_stack *ft_sort_five(t_stack *pile_a, t_stack *pile_b)
 {
-	int	min;
-	int	loop_count;
-
-	loop_count = 0;
-	min = ft_min_int(pile_a);
-
-	///min < (pile_a->size_max / 2)
-	while (loop_count != 2)
+	while ((pile_a->top_index != 2))
 	{
-		if (min < (pile_a->size_max / 2))
-			while ((pile_a->size_max - pile_a->top_index -1) != min)
-			{
+		if (ft_min_int(pile_a) < (pile_a->size_max / 2))
+			while ((pile_a->size_max - pile_a->top_index -1) != ft_min_int(pile_a))
 				ft_reverse_rotate_a(pile_a);
-				min = ft_min_int(pile_a);
-			}
 		else
-			while ((pile_a->size_max - pile_a->top_index -1) != min)
-			{	
+			while ((pile_a->size_max - pile_a->top_index -1) != ft_min_int(pile_a))
 				ft_rotate_a(pile_a);
-				min = ft_min_int(pile_a);
-			}
 		ft_push_b(pile_a, pile_b);
-		loop_count++;
 	}
 	ft_sort_three(pile_a);
 	ft_push_a(pile_a, pile_b);
 	ft_push_a(pile_a, pile_b);
+}
+
+t_stack *ft_push_med(t_stack *a, t_stack *b)
+{
+	int	i;
+
+	i = 0;
+	while (i != a->size_max)
+	{
+		if (a->tableau[(a->size_max - a->top_index -1)] < ft_mediane(a))
+			ft_push_b(a, b);
+		else
+			ft_rotate_a(a);
+		i++;
+	}
+	return (a);
+}
+
+int check_top(t_stack *a, int *chunk)
+{
+	int	i;
+	int	j;
+	int	n;
+	
+	n = 5;
+	i = (a->size_max - a->top_index -1);
+	while (i != 0)
+	{
+		j = 0;
+		while (j != a->size_max /n)
+		{
+			if (a->tableau[i] == chunk[j])
+				return (i);
+			else
+				j++;
+		}
+		i--;
+	}
+	return (-1);
+}
+
+int	check_bottom(t_stack *a, int *chunk)
+{
+	int	i;
+	int	j;
+	int	n;
+	
+	n = 5;
+	i = 0;
+	while (i != (a->size_max - a->top_index -1))
+	{
+		j = 0;
+		while (j != a->size_max /n)
+		{
+			if (a->tableau[i] == chunk[j])
+				return (i);
+			else
+				j++;
+		}
+		i++;
+	}
+	return (-1);
+}
+
+t_stack	*ft_push_chunks(t_stack *a, t_stack *b)
+{
+	int	**chunks;
+	int	i;
+	int	n;
+	int	topnbr;
+	int bottomnbr;
+	
+	i = 0;
+	n = 5;
+	chunks = ft_split_tab(a);
+	topnbr = check_top(a, chunks[i]);
+	bottomnbr = check_bottom(a, chunks[i]);
+	while (i != n)
+	{
+		while (check_top(a, chunks[i]) != -1)
+		{
+			if ((a->size_max - check_top(a, chunks[i])) < ((0 - check_bottom(a, chunks[i]) -1) *-1))
+			{
+				topnbr = check_top(a, chunks[i]);
+				while ((a->size_max - a->top_index -1) != topnbr)
+				{
+					///ft_printf("%d %d\n", (a->size_max - a->top_index -1), check_top(a, chunks[i]));
+					if (topnbr > a->size_max /2)
+					{
+						ft_rotate_a(a);
+						topnbr++;
+					}
+					else
+					{
+						if (topnbr == 0)
+						{
+							ft_reverse_rotate_a(a);
+							topnbr = a->size_max - a->top_index -1;
+						}
+						else
+						{
+							ft_reverse_rotate_a(a);
+							topnbr--;
+						}
+					}
+				}
+				ft_push_b(a, b);
+			}
+			else
+			{
+				bottomnbr = check_bottom(a, chunks[i]);
+				while ((a->size_max - a->top_index -1) != bottomnbr)
+				{
+					//ft_printf("%d %d\n", (a->size_max - a->top_index -1), check_top(a, chunks[i]));
+					if (bottomnbr > a->size_max /2)
+					{
+						ft_rotate_a(a);
+						bottomnbr++;
+					}
+					else
+					{
+						if (bottomnbr == 0)
+						{
+							ft_reverse_rotate_a(a);
+							bottomnbr = a->size_max - a->top_index -1;
+						}
+						else
+						{
+							ft_reverse_rotate_a(a);
+							bottomnbr--;
+						}
+					}
+				}
+				ft_push_b(a, b);
+			}
+		}
+		i++;
+	}
+}
+
+t_stack	*ft_sort_big(t_stack *a, t_stack *b)
+{
+	int	k;
+	int	j;
+	k = 0;
+	j = 0;
+	ft_push_chunks(a, b);
+	while (isEmpty(b) == -1)
+	{
+		if (b->tableau[(b->size_max - b->top_index -1)] == b->tableau[ft_max_int(b)])
+			ft_push_a(a, b);
+		else
+			if (ft_max_int(b) < (b->size_max / 2))
+				while ((b->size_max - b->top_index -1) != ft_max_int(b))
+					ft_reverse_rotate_b(b);
+			else
+				while ((b->size_max - b->top_index -1) != ft_max_int(b))
+					ft_rotate_b(b);
+	}
 }
