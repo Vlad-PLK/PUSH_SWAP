@@ -100,9 +100,7 @@ void	push_swap(int argc, char **argv)
 {
 	t_stack *pile_a;
 	t_stack *pile_b;
-	int		i;
 
-	i = 1;
 	if (argc == 1)
 		return ;
 	if ((argc - 1) == 1)
@@ -118,11 +116,10 @@ void	push_swap(int argc, char **argv)
 			ft_sort_three(pile_a);
 		if (pile_a->size_max == 5)
 			ft_sort_five(pile_a, pile_b);
-		if (pile_a->size_max > 5)
-		{
-			ft_sort_big(pile_a, pile_b);
-			//ft_display_tab(pile_a);
-		}
+		if (pile_a->size_max > 5 && pile_a->size_max < 500)
+			ft_sort_big(pile_a, pile_b, 5);
+		if (pile_a->size_max >= 500)
+			ft_sort_big(pile_a, pile_b, 11);
 }
 
 int	main(int argc, char **argv)

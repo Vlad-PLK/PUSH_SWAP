@@ -44,14 +44,14 @@ int		find_occur(t_stack *a);
 int		ft_max_int(t_stack *pile_a);
 t_stack	*ft_sort_three(t_stack *pile_a);
 t_stack *ft_sort_five(t_stack *pile_a, t_stack *pile_b);
-t_stack	*ft_sort_big(t_stack *a, t_stack *b);
+t_stack	*ft_sort_big(t_stack *a, t_stack *b, int nb_chunks);
 int	ft_check_ascending(t_stack *pile_a);
 void	ft_checkErrors(t_stack *pile_a);
 int	ft_min_int(t_stack *pile_a);
 int	ft_mediane(t_stack *pile_a);
 int	*ft_sort_int_tab(t_stack *pile_a);
-int	**ft_split_tab(t_stack *pile_a);
-int check_top(t_stack *a, int *chunk);
+int	**ft_split_tab(t_stack *pile_a, int nb_chunks);
+int check_top(t_stack *a, int *chunk, int nb_chunks);
 void	push_swap(int argc, char **argv);
 
 #endif

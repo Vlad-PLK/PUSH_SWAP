@@ -62,9 +62,8 @@ int	ft_min_int(t_stack *pile_a)
 	return (index);
 }
 
-int	**ft_split_tab(t_stack *pile_a)
+int	**ft_split_tab(t_stack *pile_a, int nb_chunks)
 {
-	int	n;
 	int	*tab;
 	int	i;
 	int	**chunks;
@@ -72,15 +71,14 @@ int	**ft_split_tab(t_stack *pile_a)
 	int k;
 
 	tab = ft_sort_int_tab(pile_a);
-	n = 5;
 	i = 0;
 	k = 0;
-	chunks = (int **)malloc(sizeof(int *) * n);
-	while (i != n)
+	chunks = (int **)malloc(sizeof(int *) * nb_chunks);
+	while (i != nb_chunks)
 	{
 		j = 0;
-		chunks[i] = (int *)malloc(sizeof(int) * (pile_a->size_max /n));
-		while (j != (pile_a->size_max /n))
+		chunks[i] = (int *)malloc(sizeof(int) * (pile_a->size_max /nb_chunks));
+		while (j != (pile_a->size_max /nb_chunks))
 		{
 			chunks[i][j] = tab[k];
 			j++;
@@ -89,19 +87,4 @@ int	**ft_split_tab(t_stack *pile_a)
 		i++;
 	}
 	return (chunks);
-}
-
-int	ft_mediane(t_stack *pile_a)
-{
-	int	*tab;
-	int	med;
-	int	n;
-
-	n = pile_a->size_max;
-	tab = ft_sort_int_tab(pile_a);
-	if ((n / 2) == 0)
-		med = ((tab[(n /2) -1] + tab[((n /2) +1) -1]) /2);
-	else
-		med = tab[((n +1) /2) -1];
-	return (med);
 }
