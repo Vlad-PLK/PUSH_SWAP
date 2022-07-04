@@ -6,7 +6,7 @@
 /*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/06/10 12:07:36 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:19:42 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -80,7 +80,7 @@ t_stack	*createStack_tab_split(t_stack *a, int argc, char **arg_list)
 	return (a);
 }
 
-t_stack	*ft_split_arg(char *arg, t_stack *a, t_stack *b)
+t_stack	*ft_split_arg(char *arg, t_stack *a)
 {
 	char **arg_list;
 	int		i;
@@ -100,11 +100,11 @@ void	push_swap(int argc, char **argv)
 {
 	t_stack *pile_a;
 	t_stack *pile_b;
-
+	
 	if (argc == 1)
 		return ;
 	if ((argc - 1) == 1)
-		pile_a = ft_split_arg(argv[1], pile_a, pile_b);
+		pile_a = ft_split_arg(argv[1], pile_a);
 	else
 		pile_a = createStack_tab(pile_a, argc, argv);
 	ft_checkErrors(pile_a);
@@ -119,7 +119,7 @@ void	push_swap(int argc, char **argv)
 		if (pile_a->size_max > 5 && pile_a->size_max < 500)
 			ft_sort_big(pile_a, pile_b, 5);
 		if (pile_a->size_max >= 500)
-			ft_sort_big(pile_a, pile_b, 11);
+			ft_sort_big(pile_a, pile_b, 10);
 }
 
 int	main(int argc, char **argv)

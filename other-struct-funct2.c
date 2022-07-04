@@ -6,7 +6,7 @@
 /*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/06/10 12:07:36 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:21:28 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -77,23 +77,25 @@ void	ft_checkErrors(t_stack *pile_a)
 	return ;
 }
 
-void	ft_display_tab(t_stack *pile)
+int	check_chunk2(t_stack *a, int *chunk, int nb_chunks)
 {
-	int v;
+	int i;
+	int	j;
 
-	v = 1;
-
-	ft_printf("----PILE----\n");
-	while (v != pile->size_max +1)
+	i = 0;
+	while (i != (a->size_max - a->top_index -1))
 	{
-		ft_printf("%d\n", pile->tableau[pile->size_max - v]);
-		v++;
+		j = 0;
+		while (j < (a->size_max) /nb_chunks)
+		{
+			if (a->tableau[i] == chunk[j])
+				return (1);
+			else
+				j++;
+		}
+		i++;
 	}
-	ft_printf("\n");
-
-	ft_printf("SIZE MAX ->%d\n", pile->size_max);
-	ft_printf("TOP INDEX ->%d\n", pile->top_index);
-	ft_printf("VALEUR TOP INDEX ->%d\n", pile->tableau[pile->top_index]);
+	return (0);
 }
 
 t_stack	*ft_sort_three(t_stack *pile_a)
@@ -117,4 +119,5 @@ t_stack	*ft_sort_three(t_stack *pile_a)
 	}
 	else
 		ft_swap_a(pile_a);
+	return (pile_a);
 }

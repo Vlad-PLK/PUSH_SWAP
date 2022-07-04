@@ -1,6 +1,6 @@
 PRINTF = printf/
 
-SRCS = push_swap.c ft_sort_funct.c ope-part1.c ope-part2.c other-struct-funct.c other-struct-funct2.c
+SRCS = push_swap.c ft_sort_funct.c ft_sort_funct2.c ope-part1.c ope-part2.c other-struct-funct.c other-struct-funct2.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 ${NAME}:	${OBJS}
 						make -C ${PRINTF}
-						cp printf/libftprint.a ${NAME}
+						cp printf/libftprintf.a ${NAME}
 						ar src ${NAME} ${OBJS}
 
 all:		${NAME}
