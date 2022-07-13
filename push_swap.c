@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/04 12:19:42 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:03:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
 #include "printf/libft/libft.h"
 
-t_stack *createStack(int size)
+t_stack	*create_stack(int size)
 {
-	t_stack *stack = (t_stack*)malloc(sizeof(t_stack));
+	t_stack	*stack;
 
+	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->size_max = size;
 	stack->top_index = size;
 	stack->tableau = (int *)malloc(sizeof(int) * size);
-
 	return (stack);
 }
 
-t_stack	*createStack_tab(t_stack *pile_a, int argc, char **argv)
+t_stack	*create_stack_tab(t_stack *pile_a, int argc, char **argv)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	pile_a = createStack(argc -1);
+	pile_a = create_stack(argc -1);
 	while (i < argc)
 	{
 		j = 0;
@@ -53,14 +53,13 @@ t_stack	*createStack_tab(t_stack *pile_a, int argc, char **argv)
 	return (pile_a);
 }
 
-t_stack	*createStack_tab_split(t_stack *a, int argc, char **arg_list)
+t_stack	*create_stack_tab_split(t_stack *a, int argc, char **arg_list)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	a = createStack(argc);
-
+	a = create_stack(argc);
 	while (i < argc)
 	{
 		j = 0;
@@ -82,47 +81,42 @@ t_stack	*createStack_tab_split(t_stack *a, int argc, char **arg_list)
 
 t_stack	*ft_split_arg(char *arg, t_stack *a)
 {
-	char **arg_list;
+	char	**arg_list;
 	int		i;
 	int		argc;
 
 	argc = 0;
 	i = 0;
 	arg_list = ft_split(arg, 32);
-
 	while (arg_list[argc] != 0)
 		argc++;
-	a = createStack_tab_split(a, argc, arg_list);
+	a = create_stack_tab_split(a, argc, arg_list);
 	return (a);
 }
 
 void	push_swap(int argc, char **argv)
 {
-	t_stack *pile_a;
-	t_stack *pile_b;
-	
+	t_stack	*pile_a;
+	t_stack	*pile_b;
+
 	if (argc == 1)
 		return ;
 	if ((argc - 1) == 1)
 		pile_a = ft_split_arg(argv[1], pile_a);
 	else
-		pile_a = createStack_tab(pile_a, argc, argv);
-	ft_checkErrors(pile_a);
-	pile_b = createStack(pile_a->size_max);
+		pile_a = create_stack_tab(pile_a, argc, argv);
+	ft_check_errors(pile_a);
+	pile_b = create_stack(pile_a->size_max);
 	if (ft_check_ascending(pile_a) == 0)
 		return ;
 	else
 		if (pile_a->size_max == 3)
 			ft_sort_three(pile_a);
-		if (pile_a->size_max == 5)
-			ft_sort_five(pile_a, pile_b);
-		if (pile_a->size_max > 5 && pile_a->size_max < 500)
-			ft_sort_big(pile_a, pile_b, 5);
-		if (pile_a->size_max >= 500)
-			ft_sort_big(pile_a, pile_b, 10);
+	if (pile_a->size_max == 5)
+		ft_sort_five(pile_a, pile_b);
+	if (pile_a->size_max > 5 && pile_a->size_max < 500)
+		ft_sort_big(pile_a, pile_b, 5);
+	if (pile_a->size_max >= 500)
+		ft_sort_big(pile_a, pile_b, 10);
 }
 
-int	main(int argc, char **argv)
-{
-	push_swap(argc, argv);
-}

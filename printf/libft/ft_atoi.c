@@ -19,13 +19,12 @@ int	ft_atoi(const char *str)
 	i = 0;
 	while ((0 <= str[i]) && (str[i] <= 32))
 		i++;
-	if (str[i] == 45)
+	if ((str[i] == 45) || (str[i] == 43))
 	{
-		m = 1;
+		if (str[i] == 45)
+			m = 1;
 		i++;
 	}
-	else if (str[i] == 43)
-		i++;
 	if ((str[i] == 45) || (str[i] == 43))
 		return (str0);
 	while (('0' <= str[i]) && (str[i] <= '9'))

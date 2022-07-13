@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_funct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:52:04 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/04 12:37:32 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:55:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_push_swap.h"
@@ -116,7 +116,7 @@ void	ft_push_chunks(t_stack *a, t_stack *b, int nb_chunks)
 		}
 		i++;
 	}
-	while (isEmpty(a) == -1)
+	while (is_empty(a) == -1)
 		ft_push_b(a, b);
 }
 
@@ -128,7 +128,7 @@ t_stack	*ft_sort_big(t_stack *a, t_stack *b, int nb_chunks)
 	k = 0;
 	j = 0;
 	ft_push_chunks(a, b, nb_chunks);
-	while (isEmpty(b) == -1)
+	while (is_empty(b) == -1)
 	{
 		if (b->tableau[(b->size_max - b->top_index - 1)]
 			== b->tableau[ft_max_int(b)])

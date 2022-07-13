@@ -18,11 +18,10 @@ void	ft_rotate_a(t_stack *a)
 	int	temp;
 	int	v_haut;
 
-	v_haut = (a->size_max) - (a->top_index) -1;
-
-	if (isEmpty(a) == -1)
+	v_haut = (a->size_max) - (a->top_index) - 1;
+	if (is_empty(a) == -1)
 	{	
-		while (v_haut != 0)  
+		while (v_haut != 0)
 		{
 			temp = a->tableau[v_haut];
 			a->tableau[v_haut] = a->tableau[v_haut -1];
@@ -41,18 +40,17 @@ void	ft_rotate_a(t_stack *a)
 void	ft_rotate_b(t_stack *b)
 {
 	int	temp;
-    int v_hautB;
+	int	v_hautb;
 
-	v_hautB = ((b->size_max) - (b->top_index) -1);
-
-	if (isEmpty(b) == -1)
+	v_hautb = ((b->size_max) - (b->top_index) - 1);
+	if (is_empty(b) == -1)
 	{	
-		while (v_hautB != 0)  
+		while (v_hautb != 0)
 		{
-			temp = b->tableau[v_hautB];
-			b->tableau[v_hautB] = b->tableau[v_hautB -1];
-			b->tableau[v_hautB -1] = temp;
-			v_hautB--;
+			temp = b->tableau[v_hautb];
+			b->tableau[v_hautb] = b->tableau[v_hautb - 1];
+			b->tableau[v_hautb -1] = temp;
+			v_hautb--;
 		}
 		ft_printf("rb\n");
 	}
@@ -66,19 +64,18 @@ void	ft_rotate_b(t_stack *b)
 void	ft_reverse_rotate_a(t_stack *a)
 {
 	int	temp;
-	int v_haut;
-	int v_bas;
+	int	v_haut;
+	int	v_bas;
 
-	v_haut = ((a->size_max) - (a->top_index) -1);
+	v_haut = ((a->size_max) - (a->top_index) - 1);
 	v_bas = 0;
-
-	if (isEmpty(a) == -1)
+	if (is_empty(a) == -1)
 	{
 		while (v_bas != v_haut)
 		{
 			temp = a->tableau[v_bas];
-			a->tableau[v_bas] = a->tableau[v_bas +1];
-			a->tableau[v_bas +1] = temp;
+			a->tableau[v_bas] = a->tableau[v_bas + 1];
+			a->tableau[v_bas + 1] = temp;
 			v_bas++;
 		}
 		ft_printf("rra\n");
@@ -93,19 +90,18 @@ void	ft_reverse_rotate_a(t_stack *a)
 void	ft_reverse_rotate_b(t_stack *b)
 {
 	int	temp;
-	int v_haut;
-	int v_bas;
+	int	v_haut;
+	int	v_bas;
 
-	v_haut = ((b->size_max) - (b->top_index) -1);
+	v_haut = ((b->size_max) - (b->top_index) - 1);
 	v_bas = 0;
-	
-	if (isEmpty(b) == -1)
+	if (is_empty(b) == -1)
 	{
 		while (v_bas != v_haut)
 		{
 			temp = b->tableau[v_bas];
-			b->tableau[v_bas] = b->tableau[v_bas +1];
-			b->tableau[v_bas +1] = temp;
+			b->tableau[v_bas] = b->tableau[v_bas + 1];
+			b->tableau[v_bas + 1] = temp;
 			v_bas++;
 		}
 		ft_printf("rrb\n");
@@ -120,13 +116,12 @@ void	ft_reverse_rotate_b(t_stack *b)
 int	ft_max_int(t_stack *pile_a)
 {
 	int	i;
-	int index;
+	int	index;
 	int	max;
 
 	i = 0;
 	index = 0;
 	max = pile_a->tableau[0];
-
 	while (i != ((pile_a->size_max) - (pile_a->top_index)))
 	{
 		if (pile_a->tableau[i] > max)

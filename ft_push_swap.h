@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:02:39 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/04 12:30:57 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:51:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ typedef struct s_stack
 	int	*tableau;
 }t_stack;
 
-t_stack	*createStack(int size);
-t_stack	*createStack_tab(t_stack *pile_a, int argc, char **argv);
-t_stack	*createStack_tab_split(t_stack *a, int argc, char **arg_list);
+t_stack	*create_stack(int size);
+t_stack	*create_stack_tab(t_stack *pile_a, int argc, char **argv);
+t_stack	*create_stack_tab_split(t_stack *a, int argc, char **arg_list);
 t_stack	*ft_split_arg(char *arg, t_stack *a);
 void	ft_display_tab(t_stack *pile);
-int		isEmpty(t_stack *stack);
-int		isFull(t_stack *stack);
+int		is_empty(t_stack *stack);
+int		is_full(t_stack *stack);
 void	ft_swap_a(t_stack *a);
 void	ft_swap_b(t_stack *b);
 void	ft_ss(t_stack *a, t_stack *b);
@@ -46,11 +46,11 @@ t_stack	*ft_sort_three(t_stack *pile_a);
 void	ft_sort_five(t_stack *pile_a, t_stack *pile_b);
 t_stack	*ft_sort_big(t_stack *a, t_stack *b, int nb_chunks);
 int		ft_check_ascending(t_stack *pile_a);
-void	ft_checkErrors(t_stack *pile_a);
+void	ft_check_errors(t_stack *pile_a);
 int		ft_min_int(t_stack *pile_a);
 int		ft_mediane(t_stack *pile_a);
 int		*ft_sort_int_tab(t_stack *pile_a);
-int		*ft_sort_int_tab2(t_stack *pile_a, int i, int j, int temp, int *tab);
+int		*ft_sort_int_tab2(t_stack *pile_a, int temp, int *tab);
 int		**ft_split_tab(t_stack *pile_a, int nb_chunks);
 int		check_top(t_stack *a, int *chunk, int nb_chunks);
 int		check_bottom(t_stack *a, int *chunk, int nb_chunks);

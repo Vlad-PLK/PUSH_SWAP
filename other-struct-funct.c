@@ -13,7 +13,7 @@
 #include "printf/libft/libft.h"
 #include "ft_push_swap.h"
 
-int	isEmpty(t_stack *stack)
+int	is_empty(t_stack *stack)
 {
 	if (stack->top_index == stack->size_max)
 		return (1);
@@ -29,7 +29,7 @@ int	two_spot(t_stack *stack)
 		return (0);
 }
 
-int isFull(t_stack *stack)
+int	is_full(t_stack *stack)
 {
 	if (stack->top_index == 0)
 		return (1);
@@ -40,13 +40,12 @@ int isFull(t_stack *stack)
 int	ft_min_int(t_stack *pile_a)
 {
 	int	i;
-	int index;
+	int	index;
 	int	min;
 
 	i = 0;
 	index = 0;
 	min = pile_a->tableau[0];
-
 	while (i != ((pile_a->size_max) - (pile_a->top_index)))
 	{
 		if (pile_a->tableau[i] < min)
@@ -68,7 +67,7 @@ int	**ft_split_tab(t_stack *pile_a, int nb_chunks)
 	int	i;
 	int	**chunks;
 	int	j;
-	int k;
+	int	k;
 
 	tab = ft_sort_int_tab(pile_a);
 	i = 0;
@@ -77,8 +76,8 @@ int	**ft_split_tab(t_stack *pile_a, int nb_chunks)
 	while (i != nb_chunks)
 	{
 		j = 0;
-		chunks[i] = (int *)malloc(sizeof(int) * (pile_a->size_max /nb_chunks));
-		while (j != (pile_a->size_max /nb_chunks))
+		chunks[i] = (int *)malloc(sizeof(int) * (pile_a->size_max / nb_chunks));
+		while (j != (pile_a->size_max / nb_chunks))
 		{
 			chunks[i][j] = tab[k];
 			j++;

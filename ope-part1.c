@@ -19,9 +19,10 @@ void	ft_swap_a(t_stack *a)
 
 	if (two_spot(a) == 1)
 	{
-		temp = a->tableau[(a->size_max) - (a->top_index) -1];
-		a->tableau[(a->size_max) - (a->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -2];
-		a->tableau[(a->size_max)  - (a->top_index) -2] = temp;
+		temp = a->tableau[(a->size_max) - (a->top_index) - 1];
+		a->tableau[(a->size_max) - (a->top_index) - 1]
+			= a->tableau[(a->size_max) - (a->top_index) - 2];
+		a->tableau[(a->size_max) - (a->top_index) - 2] = temp;
 		ft_printf("sa\n");
 	}
 	else
@@ -33,13 +34,14 @@ void	ft_swap_a(t_stack *a)
 
 void	ft_swap_b(t_stack *b)
 {
-	int temp;
+	int	temp;
 
 	if (two_spot(b) == 1)
 	{
-		temp = b->tableau[(b->size_max) - (b->top_index) -1];
-		b->tableau[(b->size_max) - (b->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -2];
-		b->tableau[(b->size_max) - (b->top_index) -2] = temp;
+		temp = b->tableau[(b->size_max) - (b->top_index) - 1];
+		b->tableau[(b->size_max) - (b->top_index) - 1]
+			= b->tableau[(b->size_max) - (b->top_index) - 2];
+		b->tableau[(b->size_max) - (b->top_index) - 2] = temp;
 		ft_printf("sb\n");
 	}
 	else
@@ -53,15 +55,17 @@ void	ft_ss(t_stack *a, t_stack *b)
 {	
 	int	temp1;
 	int	temp2;
-	
+
 	if ((two_spot(a) == 1) && (two_spot(b) == 1))
 	{
-		temp1 = a->tableau[(a->size_max) - (a->top_index) -1];
-		a->tableau[(a->size_max) - (a->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -2];
-		a->tableau[(a->size_max)  - (a->top_index) -2] = temp1;
-		temp2 = b->tableau[(b->size_max) - (b->top_index) -1];
-		b->tableau[(b->size_max) - (b->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -2];
-		b->tableau[(b->size_max) - (b->top_index) -2] = temp2;
+		temp1 = a->tableau[(a->size_max) - (a->top_index) - 1];
+		a->tableau[(a->size_max) - (a->top_index) - 1]
+			= a->tableau[(a->size_max) - (a->top_index) - 2];
+		a->tableau[(a->size_max) - (a->top_index) - 2] = temp1;
+		temp2 = b->tableau[(b->size_max) - (b->top_index) - 1];
+		b->tableau[(b->size_max) - (b->top_index) - 1]
+			= b->tableau[(b->size_max) - (b->top_index) - 2];
+		b->tableau[(b->size_max) - (b->top_index) - 2] = temp2;
 		ft_printf("ss\n");
 	}
 	else
@@ -73,10 +77,11 @@ void	ft_ss(t_stack *a, t_stack *b)
 
 void	ft_push_a(t_stack *a, t_stack *b)
 {
-	if (isFull(a) == -1 && isEmpty(b) == -1)
+	if (is_full(a) == -1 && is_empty(b) == -1)
 	{
 		a->top_index--;
-		a->tableau[(a->size_max) - (a->top_index) -1] = b->tableau[(b->size_max) - (b->top_index) -1];
+		a->tableau[(a->size_max) - (a->top_index) - 1]
+			= b->tableau[(b->size_max) - (b->top_index) - 1];
 		b->top_index++;
 		ft_printf("pa\n");
 	}
@@ -89,10 +94,11 @@ void	ft_push_a(t_stack *a, t_stack *b)
 
 void	ft_push_b(t_stack *a, t_stack *b)
 {
-	if (isFull(b) == -1 && isEmpty(a) == -1)
+	if (is_full(b) == -1 && is_empty(a) == -1)
 	{
 		b->top_index--;
-		b->tableau[(b->size_max) - (b->top_index) -1] = a->tableau[(a->size_max) - (a->top_index) -1];
+		b->tableau[(b->size_max) - (b->top_index) - 1]
+			= a->tableau[(a->size_max) - (a->top_index) - 1];
 		a->top_index++;
 		ft_printf("pb\n");
 	}

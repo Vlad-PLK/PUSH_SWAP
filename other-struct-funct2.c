@@ -18,7 +18,7 @@
 
 int	find_occur(t_stack *a)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -39,7 +39,7 @@ int	find_occur(t_stack *a)
 
 int	ft_check_ascending(t_stack *pile_a)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -58,15 +58,16 @@ int	ft_check_ascending(t_stack *pile_a)
 	return (0);
 }
 
-void	ft_checkErrors(t_stack *pile_a)
+void	ft_check_errors(t_stack *pile_a)
 {
 	int	i;
 
 	i = 0;
 	while (i != pile_a->size_max -1)
 	{
-		if (pile_a->tableau[i] == 2147483647 || pile_a->tableau[i] == -2147483646 
-		|| find_occur(pile_a) == -1)
+		if (pile_a->tableau[i] == 2147483647
+			|| pile_a->tableau[i] == -2147483646
+			|| find_occur(pile_a) == -1)
 		{
 			ft_printf("Error\n");
 			exit(EXIT_FAILURE);
@@ -79,14 +80,14 @@ void	ft_checkErrors(t_stack *pile_a)
 
 int	check_chunk2(t_stack *a, int *chunk, int nb_chunks)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
 	while (i != (a->size_max - a->top_index -1))
 	{
 		j = 0;
-		while (j < (a->size_max) /nb_chunks)
+		while (j < (a->size_max) / nb_chunks)
 		{
 			if (a->tableau[i] == chunk[j])
 				return (1);
