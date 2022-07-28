@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/13 17:03:55 by marvin           ###   ########.fr       */
+/*   Updated: 2022/07/28 20:32:01 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
 #include "printf/libft/libft.h"
-
-t_stack	*create_stack(int size)
-{
-	t_stack	*stack;
-
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	stack->size_max = size;
-	stack->top_index = size;
-	stack->tableau = (int *)malloc(sizeof(int) * size);
-	return (stack);
-}
 
 t_stack	*create_stack_tab(t_stack *pile_a, int argc, char **argv)
 {
@@ -91,6 +80,12 @@ t_stack	*ft_split_arg(char *arg, t_stack *a)
 	while (arg_list[argc] != 0)
 		argc++;
 	a = create_stack_tab_split(a, argc, arg_list);
+	while (i != argc)
+	{
+		free(arg_list[i]);
+		i++;
+	}
+	free(arg_list);
 	return (a);
 }
 
@@ -99,24 +94,32 @@ void	push_swap(int argc, char **argv)
 	t_stack	*pile_a;
 	t_stack	*pile_b;
 
+	pile_a = NULL;
+	pile_b = NULL;
 	if (argc == 1)
 		return ;
-	if ((argc - 1) == 1)
-		pile_a = ft_split_arg(argv[1], pile_a);
-	else
+	if (!((argc - 1) == 1) || ((argc -1) == 1 && ft_strlen(argv[1]) == 1))
 		pile_a = create_stack_tab(pile_a, argc, argv);
+	else
+		pile_a = ft_split_arg(argv[1], pile_a);
 	ft_check_errors(pile_a);
 	pile_b = create_stack(pile_a->size_max);
-	if (ft_check_ascending(pile_a) == 0)
-		return ;
-	else
+	if (ft_check_ascending(pile_a) == -1)
+	{
 		if (pile_a->size_max == 3)
 			ft_sort_three(pile_a);
-	if (pile_a->size_max == 5)
-		ft_sort_five(pile_a, pile_b);
-	if (pile_a->size_max > 5 && pile_a->size_max < 500)
-		ft_sort_big(pile_a, pile_b, 5);
-	if (pile_a->size_max >= 500)
-		ft_sort_big(pile_a, pile_b, 10);
+		if (pile_a->size_max == 5)
+			ft_sort_five(pile_a, pile_b);
+		if (pile_a->size_max > 5 && pile_a->size_max < 500)
+			ft_sort_big(pile_a, pile_b, 5);
+		if (pile_a->size_max >= 500)
+			ft_sort_big(pile_a, pile_b, 10);
+	}
+	ft_free_stacks(pile_a, pile_b);
 }
 
+int	main(int argc, char **argv)
+{
+	push_swap(argc, argv);
+	//system("leaks push_swap");
+}

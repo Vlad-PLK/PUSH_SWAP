@@ -85,5 +85,6 @@ int	**ft_split_tab(t_stack *pile_a, int nb_chunks)
 		}
 		i++;
 	}
+	free(tab);
 	return (chunks);
 }

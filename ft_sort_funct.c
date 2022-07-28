@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_funct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:52:04 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/13 16:55:30 by marvin           ###   ########.fr       */
+/*   Updated: 2022/07/28 20:21:51 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,24 @@ t_stack	*ft_push_top(t_stack *a, int nb_chunks, int topnbr, int *chunk)
 	topnbr = check_top(a, chunk, nb_chunks);
 	while ((a->size_max - a->top_index -1) != (topnbr))
 	{
-		if ((topnbr) > (a->size_max - a->top_index - 1) / 2)
+		if (topnbr < 0)
+			break ;
+		if ((topnbr) >= ((a->size_max - a->top_index - 1) / 2))
 		{
 			ft_rotate_a(a);
-			(topnbr)++;
+			topnbr++;
 		}
 		else
 		{
 			if ((topnbr) == 0)
 			{
+				topnbr = a->size_max - a->top_index -1;
 				ft_reverse_rotate_a(a);
-				(topnbr) = a->size_max - a->top_index -1;
 			}
 			else
 			{
 				ft_reverse_rotate_a(a);
-				(topnbr)--;
+				topnbr--;
 			}
 		}
 	}
@@ -70,22 +72,24 @@ t_stack	*ft_push_bottom(t_stack *a, int nb_chunks, int bottomnbr, int *chunk)
 	bottomnbr = check_bottom(a, chunk, nb_chunks);
 	while ((a->size_max - a->top_index - 1) != (bottomnbr))
 	{
-		if ((bottomnbr) > (a->size_max - a->top_index - 1) / 2)
+		if (bottomnbr < 0)
+			break ;
+		if ((bottomnbr) >= ((a->size_max - a->top_index - 1) / 2))
 		{
 			ft_rotate_a(a);
-			(bottomnbr)++;
+			bottomnbr++;
 		}
 		else
 		{
 			if ((bottomnbr) == 0)
 			{
+				bottomnbr = a->size_max - a->top_index -1;
 				ft_reverse_rotate_a(a);
-				(bottomnbr) = a->size_max - a->top_index -1;
 			}
 			else
 			{
 				ft_reverse_rotate_a(a);
-				(bottomnbr)--;
+				bottomnbr--;
 			}
 		}
 	}
@@ -116,8 +120,7 @@ void	ft_push_chunks(t_stack *a, t_stack *b, int nb_chunks)
 		}
 		i++;
 	}
-	while (is_empty(a) == -1)
-		ft_push_b(a, b);
+	ft_free_chunks(chunks, nb_chunks, a, b);
 }
 
 t_stack	*ft_sort_big(t_stack *a, t_stack *b, int nb_chunks)

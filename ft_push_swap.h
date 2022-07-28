@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:02:39 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/13 16:51:35 by marvin           ###   ########.fr       */
+/*   Updated: 2022/07/28 20:25:10 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int		check_chunk2(t_stack *a, int *chunk, int nb_chunks);
 t_stack	*ft_push_top(t_stack *a, int nb_chunks, int topnbr, int *chunk);
 t_stack	*ft_push_bottom(t_stack *a, int nb_chunks, int bottomnbr, int *chunk);
 void	ft_push_chunks(t_stack *a, t_stack *b, int nb_chunks);
+void	ft_free_chunks(int **chunks, int nb_chunks, t_stack *a, t_stack *b);
+void	ft_free_stacks(t_stack *a, t_stack *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 10:06:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/13 16:53:43 by marvin           ###   ########.fr       */
+/*   Updated: 2022/07/19 20:29:14 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	*ft_sort_int_tab2(t_stack *pile_a, int temp, int *tab)
 int	*ft_sort_int_tab(t_stack *pile_a)
 {
 	int		i;
-	int		j;
 	int		temp;
 	int		*tab;
 
