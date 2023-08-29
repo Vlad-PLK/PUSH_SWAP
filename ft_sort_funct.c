@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:52:04 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/28 20:21:51 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:46:07 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,6 @@ void	ft_push_chunks(t_stack *a, t_stack *b, int nb_chunks)
 
 t_stack	*ft_sort_big(t_stack *a, t_stack *b, int nb_chunks)
 {
-	int	k;
-	int	j;
-
-	k = 0;
-	j = 0;
 	ft_push_chunks(a, b, nb_chunks);
 	while (is_empty(b) == -1)
 	{

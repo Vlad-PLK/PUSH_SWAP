@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/28 20:32:01 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/29 20:15:53 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,4 @@ void	push_swap(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	push_swap(argc, argv);
-	//system("leaks push_swap");
 }
