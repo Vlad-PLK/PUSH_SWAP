@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_funct2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 10:06:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/19 20:29:14 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:47:10 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 
 int	*ft_sort_int_tab2(t_stack *pile_a, int temp, int *tab)
 {

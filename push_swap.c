@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/08/29 20:15:53 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:46:32 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 
 t_stack	*create_stack_tab(t_stack *pile_a, int argc, char **argv)
 {

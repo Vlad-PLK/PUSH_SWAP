@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 17:51:17 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/28 20:25:26 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:47:24 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 
 t_stack	*create_stack(int size)
 {

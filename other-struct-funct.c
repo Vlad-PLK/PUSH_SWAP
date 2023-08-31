@@ -9,8 +9,9 @@
 /*   Updated: 2022/07/04 12:20:08 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 #include "ft_push_swap.h"
 
 int	is_empty(t_stack *stack)

@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:52:04 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/08/29 10:46:07 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:47:17 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 
 int	check_chunk(t_stack *a, int *chunk, int nb_chunks)
 {

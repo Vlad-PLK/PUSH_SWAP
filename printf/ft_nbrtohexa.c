@@ -6,11 +6,11 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 12:23:07 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/08/29 10:47:15 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/11/25 11:42:06 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "../libft/libft.h"
 #include "ft_printf.h"
 
 void	ft_nbrtohexa(va_list list_arg, size_t *nb_cara)

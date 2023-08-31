@@ -9,12 +9,13 @@
 /*   Updated: 2022/07/04 12:21:28 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 
 int	find_occur(t_stack *a)
 {

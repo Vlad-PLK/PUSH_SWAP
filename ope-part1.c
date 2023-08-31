@@ -9,9 +9,10 @@
 /*   Updated: 2022/07/04 10:09:13 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_push_swap.h"
 #include "printf/ft_printf.h"
-#include "printf/libft/libft.h"
+#include "libft/libft.h"
 
 void	ft_swap_a(t_stack *a)
 {

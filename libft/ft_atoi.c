@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpolojie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 18:37:04 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/07/24 17:49:11 by vpolojie         ###   ########.fr       */
+/*   Updated: 2022/11/25 11:43:41 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_atoi_part2(long int str0, int m)
 {
