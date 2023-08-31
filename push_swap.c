@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/08/31 10:46:32 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/08/31 10:55:17 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*create_stack_tab(t_stack *pile_a, int argc, char **argv)
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
 			{
-				ft_printf("Error\n");
+				ft_printf("Error : non-digit arguments are forbidden\n");
 				exit(EXIT_FAILURE);
 			}
 			j++;
@@ -56,7 +56,7 @@ t_stack	*create_stack_tab_split(t_stack *a, int argc, char **arg_list)
 		{
 			if (ft_isdigit(arg_list[i][j]) == 0)
 			{
-				ft_printf("Error\n");
+				ft_printf("Error : non-digit arguments are forbidden\n");
 				exit(EXIT_FAILURE);
 			}
 			j++;
@@ -98,10 +98,14 @@ void	push_swap(int argc, char **argv)
 	pile_b = NULL;
 	if (argc == 1)
 		return ;
+
+	// racourcir cette partie //
 	if (!((argc - 1) == 1) || ((argc -1) == 1 && ft_strlen(argv[1]) == 1))
 		pile_a = create_stack_tab(pile_a, argc, argv);
 	else
 		pile_a = ft_split_arg(argv[1], pile_a);
+	//		...				 //
+
 	ft_check_errors(pile_a);
 	pile_b = create_stack(pile_a->size_max);
 	if (ft_check_ascending(pile_a) == -1)

@@ -35,13 +35,13 @@ LIBRARY1 = -L./${LIBFOLDER_PRINTF} -lftprintf
 LIBRARY2 = -L./${LIBFOLDER_LIBFT} -lft
 
 %.o:	%.c
-	@printf "$(MSG_BCOLOR_PRIMARY) COMPILING C FILES FROM LIBRARIES: "
+	@printf "$(MSG_BCOLOR_PRIMARY) COMPILING C FILES : "
 	@printf "$(TERM_CONTROL_RESET)"
 	${CC} ${CFLAGS} -DONE=1 $(INCLUDE) $(INCLUDE_LIBFT) -c $< -o $@
 
 ${NAME}:	${OBJS}
 	@printf "\n\n"
-	@printf "$(MSG_BCOLOR_SUCCESS) LINKING LIBRARIES WITH MANDATORY: "
+	@printf "$(MSG_BCOLOR_SUCCESS) MAKING AND LINKING LIBRARIES WITH MANDATORY: "
 	@printf "$(TERM_CONTROL_RESET)"
 	make -s -C ${LIBFOLDER_PRINTF}
 	${CC} ${CFLAGS} $^ ${LIBRARY1} ${LIBRARY2} -o $@
@@ -68,7 +68,7 @@ clean:
 				@printf "\n"
 
 fclean:		clean clean_libs
-				@printf "$(MSG_BCOLOR_WARNING) CLEANING OBJECT EXECUTABLE : "
+				@printf "$(MSG_BCOLOR_WARNING) CLEANING EXECUTABLE : "
 				@printf "$(TERM_CONTROL_RESET)"
 				${RM} ${NAME}
 				@printf "\n"
