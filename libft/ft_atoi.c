@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 18:37:04 by vpolojie          #+#    #+#             */
-/*   Updated: 2022/11/25 11:43:41 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/08 19:31:21 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 
 int	ft_atoi_part2(long int str0, int m)
 {
-	if (str0 > 2147483647 || str0 < -2147483646)
-	{
-		ft_printf("Error\n");
-		exit(EXIT_FAILURE);
-	}
 	if (m == 1)
 		str0 = str0 * -1;
+	if (str0 > 2147483647)
+	{
+		ft_printf("Error : Superior to MAX_INT detected\n");
+		exit(EXIT_FAILURE);
+	}
+	else if (str0 < -2147483646)
+	{
+		ft_printf("Error : Inferior to MIN_INT detected\n");
+		exit(EXIT_FAILURE);
+	}
 	return (str0);
 }
 

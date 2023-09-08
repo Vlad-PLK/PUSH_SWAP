@@ -66,12 +66,9 @@ void	ft_check_errors(t_stack *pile_a)
 	i = 0;
 	while (i != pile_a->size_max -1)
 	{
-		// changer les messages d'erreurs //
-		if (pile_a->tableau[i] > 2147483647
-			|| pile_a->tableau[i] < -2147483646
-			|| find_occur(pile_a) == -1)
+		if (find_occur(pile_a) == -1)
 		{
-			ft_printf("Error\n");
+			ft_printf("Error : Duplicates are forbidden\n");
 			exit(EXIT_FAILURE);
 		}
 		else

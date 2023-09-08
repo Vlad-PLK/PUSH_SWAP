@@ -14,54 +14,6 @@
 #include "libft/libft.h"
 #include "ft_push_swap.h"
 
-int	is_empty(t_stack *stack)
-{
-	if (stack->top_index == stack->size_max)
-		return (1);
-	else
-		return (-1);
-}
-
-int	two_spot(t_stack *stack)
-{
-	if (stack->top_index <= stack->size_max -2)
-		return (1);
-	else
-		return (0);
-}
-
-int	is_full(t_stack *stack)
-{
-	if (stack->top_index == 0)
-		return (1);
-	else
-		return (-1);
-}
-
-int	ft_min_int(t_stack *pile_a)
-{
-	int	i;
-	int	index;
-	int	min;
-
-	i = 0;
-	index = 0;
-	min = pile_a->tableau[0];
-	while (i != ((pile_a->size_max) - (pile_a->top_index)))
-	{
-		if (pile_a->tableau[i] < min)
-		{
-			min = pile_a->tableau[i];
-			i++;
-		}
-		else
-			i++;
-	}
-	while (pile_a->tableau[index] != min)
-		index++;
-	return (index);
-}
-
 int	**ft_split_tab(t_stack *pile_a, int nb_chunks)
 {
 	int	*tab;

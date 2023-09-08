@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 15:50:49 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/08/31 10:55:17 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/08 19:35:23 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,10 @@ void	push_swap(int argc, char **argv)
 	t_stack	*pile_b;
 
 	pile_a = NULL;
-	pile_b = NULL;
-	if (argc == 1)
-		return ;
-
-	// racourcir cette partie //
 	if (!((argc - 1) == 1) || ((argc -1) == 1 && ft_strlen(argv[1]) == 1))
 		pile_a = create_stack_tab(pile_a, argc, argv);
 	else
 		pile_a = ft_split_arg(argv[1], pile_a);
-	//		...				 //
-
 	ft_check_errors(pile_a);
 	pile_b = create_stack(pile_a->size_max);
 	if (ft_check_ascending(pile_a) == -1)
@@ -124,5 +117,8 @@ void	push_swap(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	push_swap(argc, argv);
+	if (argc == 1)
+		ft_printf("Nothing to sort\n");
+	else
+		push_swap(argc, argv);
 }

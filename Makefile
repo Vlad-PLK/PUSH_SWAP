@@ -1,6 +1,21 @@
 NAME = push_swap
 
-SRCS = push_swap.c ft_create_stack.c ft_sort_funct.c ft_sort_funct2.c ope-part1.c ope-part2.c other-struct-funct.c other-struct-funct2.c \
+SRCS = 	push_swap.c ft_create_stack.c ft_sort_funct.c ft_sort_funct2.c \
+		other-struct-funct.c other-struct-funct2.c \
+		operations/ft_push_a.c \
+		operations/ft_push_b.c \
+		operations/ft_swap_a.c \
+		operations/ft_swap_b.c \
+		operations/ft_reverse_rotate_a.c \
+		operations/ft_reverse_rotate_b.c \
+		operations/ft_rotate_a.c \
+		operations/ft_rotate_b.c \
+		operations/ft_swap_ab.c \
+		operations/ft_max_int.c \
+		operations/ft_is_full.c \
+		operations/ft_is_empty.c \
+		operations/ft_two_spots.c \
+		operations/ft_min_int.c \
 
 # > MESSAGES COLORS <<<<<<
 
